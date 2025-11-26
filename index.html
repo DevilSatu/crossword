@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <link rel="stylesheet" type="text/css" href="/src/style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crossword Maker</title>
+</head>
+
+<template id="word-list">
+  <table class="word-list">
+    <thead>
+      <tr>
+        <th>Слово</th>
+        <th>Описание</th>
+        <th>Действия</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</template>
+
+<template id="table-row">
+  <tr class="word-row" data-word="%word">
+    <td>%word</td>
+    <td>
+      <span class="desc-text">%description</span>
+      <button class="edit-btn" data-word="%word">Изменить</button>
+    </td>
+    <td>
+      <button class="delete-btn" data-word="%word">Удалить</button>
+      <button class="select-btn" data-word="%word">Выбрать</button>
+    </td>
+  </tr>
+</template>
+
+<body>
+  <div id="root"></div>
+
+  <div class="controls">
+    <form id="word-form">
+      <div class="stroka-input">
+        <input id="word-input" placeholder="Слово" required />
+        <textarea id="desc-input" placeholder="Описание" required></textarea>
+        <button type="submit">Добавить</button>
+      </div>
+    </form>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
