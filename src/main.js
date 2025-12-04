@@ -35,9 +35,29 @@ const renderGrid = () => {
     ? `<p>Выбрано слово: <strong>${selectedWord}</strong> (${direction})</p>`
     : '<p>Нажми «Выбрать» у слова, чтобы вставить его в сетку.</p>';
 
+  const directionControls = `
+    <div class="direction-controls">
+      <label>
+        <input type="radio"
+               name="direction"
+               value="horizontal"
+               ${direction === 'horizontal' ? 'checked' : ''}>
+        По горизонтали
+      </label>
+      <label>
+        <input type="radio"
+               name="direction"
+               value="vertical"
+               ${direction === 'vertical' ? 'checked' : ''}>
+        По вертикали
+      </label>
+    </div>
+  `;
+
   return `
     <div class="grid-panel">
       <h3>Сетка 10×10</h3>
+      ${directionControls}
       ${selectedInfo}
       <div class="grid">${cells}</div>
     </div>
@@ -94,6 +114,14 @@ app.addEventListener('click', (event) => {
       return;
     }
     placeWord(selectedWord, Number(target.dataset.row), Number(target.dataset.col));
+  }
+});
+
+app.addEventListener('change', (event) => {
+  const target = event.target;
+  if (target.name === 'direction') {
+    direction = target.value;
+    render();
   }
 });
 
